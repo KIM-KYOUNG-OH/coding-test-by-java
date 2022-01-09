@@ -2,6 +2,7 @@ package programmers.dp;
 
 /**
  * 1차: solution 참고
+ * 2차: 전역 변수 static 키워드, for문 밖의 nn 증가시키는 방법 참고
  */
 public class ExpressByN {
     static int answer = -1;
