@@ -2,6 +2,7 @@ package programmers.dfsAndBfs;
 
 /**
  * 1차: solution 참고
+ * 2차: 통과
  */
 public class TargetNumber {
     private static int count = 0;

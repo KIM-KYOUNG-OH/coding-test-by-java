@@ -2,6 +2,7 @@ package programmers.dp;
 
 /**
  * 1차: solution 참고, dpWhenStealFirst[1] = 0이면 [10, 2, 2, 100, 2] 반례 주의
+ * 2차: 통과
  */
 public class Steal {
     public int solution(int[] money) {
