@@ -2,6 +2,7 @@ package programmers.dfsAndBfs;
 
 /**
  * 1차: dfs solution 참고, union-find 방법은 실패(맞게 짠거 같은데 도저히 모르겠음)
+ * 2차: 통과, 배열은 call by reference 이므로 클래스 변수로 선언할 필요 없다.
  */
 public class Network {
     public int solution(int n, int[][] computers) {
