@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 /**
  * 1차: solution 참고
+ * 2차: 통과, 사칙연산 upcasting 주의
  */
 public class Immigration {
     public long solution(int n, int[] times) {

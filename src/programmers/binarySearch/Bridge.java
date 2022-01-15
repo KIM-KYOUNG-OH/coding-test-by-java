@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 /**
  * 1차: solution 참고
+ * 2차: solution 참고
  */
 public class Bridge {
     public int solution(int distance, int[] rocks, int n) {
@@ -20,11 +21,11 @@ public class Bridge {
             int prev = 0;
             mid = (left + right) / 2;  // 돌 사이 거리 최소값
 
-            for(int i = 0; i < rocks.length; i++) {
-                if(rocks[i] - prev < mid) {
+            for (int rock : rocks) {
+                if (rock - prev < mid) {
                     delRockCnt++;
-                }else {
-                    prev = rocks[i];
+                } else {
+                    prev = rock;
                 }
             }
 

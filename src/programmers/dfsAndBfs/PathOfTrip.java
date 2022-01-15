@@ -7,7 +7,8 @@ import java.util.Queue;
 
 /**
  * 1차: solution 참고
- * 2치: solution 참고
+ * 2차: solution 참고
+ * 3차: 통과
  */
 public class PathOfTrip {
     boolean[] visited;
