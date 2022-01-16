@@ -2,9 +2,10 @@ package programmers.graph;
 
 /**
  * 1차: solution 참고
+ * 2차: 통과
  */
 public class Rank {
-    // 플로이드 워셜 알고리즘
+    // 플로이드 워셜 알고리즘 - 중간 노드 선정하기
     public int solution(int n, int[][] results) {
         boolean[][] graph = new boolean[n + 1][n + 1];
         int answer = 0;
