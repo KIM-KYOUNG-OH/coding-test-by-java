@@ -6,6 +6,7 @@ import java.util.Arrays;
  * 1차: solution 참고
  * 2차: solution 참고
  * 3차: solution 참고(마지막돌 사이 거리, sorting)
+ * 4차: 통과
  */
 public class Bridge {
     public int solution(int distance, int[] rocks, int n) {

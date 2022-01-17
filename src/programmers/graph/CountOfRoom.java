@@ -6,6 +6,7 @@ import java.util.Objects;
 
 /**
  * 1차: solution 참고
+ * 2차: solution 참고
  */
 public class CountOfRoom {
     class Pair {
