@@ -7,6 +7,7 @@ import java.util.Objects;
 /**
  * 1차: solution 참고
  * 2차: solution 참고
+ * 3차: solution 참고, scale up 이해함, 좌표 비교시 객체 사용
  */
 public class CountOfRoom {
     class Pair {
@@ -52,10 +53,13 @@ public class CountOfRoom {
                     }else {
                         visited.get(pointHC).add(newPointHC);
                     }
-                }else if(visited.containsKey(newPointHC) && !(visited.get(newPointHC).contains(pointHC))) {
-                    visited.get(newPointHC).add(pointHC);
-                    visited.get(pointHC).add(newPointHC);
-                    cnt++;
+                }else {
+                    if (!visited.get(newPointHC).contains(pointHC)) {
+                        visited.get(newPointHC).add(pointHC);
+                        visited.get(pointHC).add(newPointHC);
+                        cnt++;
+                    }
+
                 }
 
                 pointHC = newPointHC;
@@ -69,5 +73,10 @@ public class CountOfRoom {
         ArrayList<Pair> edge = new ArrayList<>();
         edge.add(pointHC);
         return edge;
+    }
+
+    public static void main(String[] args) {
+        CountOfRoom s = new CountOfRoom();
+        s.solution(new int[]{6, 6, 6, 4, 4, 4, 2, 2, 2, 0, 0, 0, 1, 6, 5, 5, 3, 6, 0});
     }
 }
