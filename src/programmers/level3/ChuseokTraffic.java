@@ -3,6 +3,7 @@ package programmers.level3;
 /**
  * 1차: solution 참고
  * 2차: solution 참고
+ * 3차: 통과
  */
 public class ChuseokTraffic {
     public int solution(String[] lines) {

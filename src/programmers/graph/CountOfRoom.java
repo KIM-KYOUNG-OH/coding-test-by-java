@@ -8,6 +8,9 @@ import java.util.Objects;
  * 1차: solution 참고
  * 2차: solution 참고
  * 3차: solution 참고, scale up 이해함, 좌표 비교시 객체 사용
+ * 4차: solution 참고
+ * 5차: 통과, Map의 key가 객체타입일 때, containsKey() 호출시 객체의 equals()함수를 내부적으로 호출한다.
+ * 이를 위해 equals(Object o)와 hashCode()를 orverriding 한다.
  */
 public class CountOfRoom {
     class Pair {
