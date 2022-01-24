@@ -4,115 +4,100 @@ import java.util.*;
 
 /**
  * 1차: solution 참고
+ * 2차: solution 참고
+ * 3차: solution 참고
  */
 public class WorryOfBrian {
     public String solution(String sentence) {
-
-        StringBuilder answerList = new StringBuilder();
-        // HashMap과 달리 입력 순서 보장
-        LinkedHashMap<Character, ArrayList<Integer>> lowerCount = new LinkedHashMap<>();
+        StringBuilder answer = new StringBuilder();
+        LinkedHashMap<Character, List<Integer>> markHavingIndexs = new LinkedHashMap<>();
         String invalid = "invalid";
+
         try {
-            int size = sentence.length();
-
-            // 소문자의 각 종류 / 위치 파악
-            for(int i = 0; i < size; i++) {
+            for(int i = 0; i < sentence.length(); i++) {
                 char c = sentence.charAt(i);
-
                 if(Character.isLowerCase(c)) {
-                    if(!lowerCount.containsKey(c)) {
-                        lowerCount.put(c, new ArrayList<Integer>());
+                    if(!markHavingIndexs.containsKey(c)) {
+                        markHavingIndexs.put(c, new ArrayList<>());
                     }
-                    lowerCount.get(c).add(i);
+                    markHavingIndexs.get(c).add(i);
                 }
             }
 
             int stringIdx = 0;
-            int startChar, endChar;
-            int lastStartChar = -1, lastEndChar = -1;
-            int startWord = 0, endWord = 0;
-            int lastStartWord = -1, lastEndWord = -1;
-            int count, distance;
-            int rule = 0;
+            int markStart, markEnd;
+            int prevMarkStart = -1, prevMarkEnd = -1;
+            int wordStart = 0, wordEnd = 0;
+            int prevWordStart = -1, prevWordEnd = -1;
+            int rule = 0, distance, count;
 
-            ArrayList<Integer> temp;
-            for(char c: lowerCount.keySet()) {
-                temp = lowerCount.get(c);
-                count = temp.size();
-                startChar = temp.get(0);
-                endChar = temp.get(count - 1);
+            List<Integer> curr;
+            for(char c: markHavingIndexs.keySet()) {
+                curr = markHavingIndexs.get(c);
+                count = curr.size();
+                markStart = curr.get(0);
+                markEnd = curr.get(count - 1);
 
-                // AaA, AaAaAaA...
                 if(count == 1 || count >= 3) {
-                    for (int i = 1; i < count; i++) {
-                        // 간격 2 넘어가면 x
-                        if (temp.get(i) - temp.get(i - 1) != 2) return invalid;
+                    for(int i = 1; i < count; i++) {
+                        if(curr.get(i) - curr.get(i - 1) != 2) return invalid;
                     }
                     rule = 1;
-                } else if (count == 2) {
-                    distance = endChar - startChar;
+                }else if (count == 2) {
+                    distance = markEnd - markStart;
 
-                    // 다른 기호 안에 있음(규칙 2와 겹침)
-                    if(distance == 2 && (endChar < lastEndChar && startChar > lastStartChar)) {
+                    if(distance == 2 && (prevMarkStart < markStart && markEnd < prevMarkEnd)) {
                         rule = 1;
-                    } else if(distance >= 2) {
+                    }else if(distance >= 2) {  // AaAaA -> A A A
                         rule = 2;
-                    } else {
-                        // 소문자 연속은 x
+                    }else {
                         return invalid;
                     }
                 }
 
-                // 규칙에 따른 예외
                 if(rule == 1) {
-                    // 기호 위치에서 앞뒤로 한칸 씩
-                    startWord = startChar - 1;
-                    endWord = endChar + 1;
+                    wordStart = markStart - 1;
+                    wordEnd = markEnd + 1;
 
-                    // 이전 단어 안에 포함되어 있는 경우
-                    if (lastStartWord < startWord && lastEndWord > endWord) {
-                        // 규칙 2 아니면 안됨
-                        if (startChar - lastStartChar == 2 && lastEndChar - endChar == 2) {
-                            continue;
-                        } else {
-                            return invalid;
-                        }
+                    if(prevWordStart < wordStart && wordEnd < prevWordEnd) {
+                        if(markStart - prevMarkStart == 2 && prevMarkEnd - markEnd == 2) continue;
+                        else return invalid;
                     }
-                } else if(rule == 2) {
-                    startWord = startChar;
-                    endWord = endChar;
-                    // 규칙 2는 중복 불가
-                    if(lastStartWord < startWord && lastEndWord > endWord) return invalid;
+                }else if(rule == 2) {
+                    wordStart = markStart;
+                    wordEnd = markEnd;
+
+                    if(prevWordStart < wordStart && wordEnd < prevWordEnd) return invalid;
                 }
 
-                if(lastEndWord >= startWord) return invalid;
+                if(wordStart <= prevWordEnd) return invalid;
 
-                // 소문자 등장 이전에 존재하던 앞의 단어 추가
-                if(stringIdx < startWord) {
-                    answerList.append(makeWord(sentence, stringIdx, startWord - 1));
-                    answerList.append(" ");
+                if(stringIdx < wordStart) {
+                    answer.append(makeWord(sentence, stringIdx, wordStart));
+                    answer.append(" ");
                 }
-                answerList.append(makeWord(sentence, startWord, endWord));
-                answerList.append(" ");
-                lastStartWord = startWord;
-                lastEndWord = endWord;
-                lastStartChar = startChar;
-                lastEndChar = endChar;
-                stringIdx = endWord + 1;
+                answer.append(makeWord(sentence, wordStart, wordEnd + 1));
+                answer.append(" ");
+
+                prevWordStart = wordStart;
+                prevWordEnd = wordEnd;
+                prevMarkStart = markStart;
+                prevMarkEnd = markEnd;
+                stringIdx = wordEnd + 1;
             }
 
-            // 뒤에 남은 단어들도 더하기
-            if(stringIdx < size) {
-                answerList.append(makeWord(sentence, stringIdx, size - 1));
+            if(stringIdx < sentence.length()) {
+                answer.append(makeWord(sentence, stringIdx, sentence.length()));
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             return invalid;
         }
-        return answerList.toString().trim();
+
+        return answer.toString().trim();
     }
 
     private String makeWord(String sentence, int start, int end) {
-        String word = sentence.substring(start, end + 1);
+        String word = sentence.substring(start, end);
         return word.replaceAll("[a-z]", "");
     }
 }
