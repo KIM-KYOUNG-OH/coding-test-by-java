@@ -2,6 +2,7 @@ package programmers.level2;
 
 /**
  * 1차: solution 참고
+ * 2차: solution 참고
  */
 public class StringCompression {
     public int solution(String s) {
