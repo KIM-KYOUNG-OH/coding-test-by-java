@@ -2,8 +2,9 @@ package programmers.level2;
 
 /**
  * 1차: solution 참고, upcasting은 시간복잡도에 영향을 줌
+ * 2차: 통과
  */
-public class NumberOf123Land {
+public class NumberOf124Land {
     public String solution(int n) {
         String[] numbers = new String[]{"4", "1", "2"};
         String answer = "";
@@ -16,4 +17,5 @@ public class NumberOf123Land {
 
         return answer;
     }
+
 }
