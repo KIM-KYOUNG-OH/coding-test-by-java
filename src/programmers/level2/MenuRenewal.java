@@ -8,6 +8,7 @@ import java.util.PriorityQueue;
 /**
  * 1차: solution 참고
  * 2차: solution 참고
+ * 3차: 통과
  */
 public class MenuRenewal {
 //    Map<String, Integer> map;
@@ -54,28 +55,74 @@ public class MenuRenewal {
 //            find(curCnt + 1, curStr + now, targetLength, i + 1, order);
 //        }
 //    }
-    Map<String, Integer> map;
+//    Map<String, Integer> map;
+//    int max;
+//
+//    public String[] solution(String[] orders, int[] course) {
+//        PriorityQueue<String> pq = new PriorityQueue<>();
+//
+//        for(int len: course) {
+//            map = new HashMap<>();
+//            max = 0;
+//            for(int i = 0; i < orders.length; i++) {
+//                find("", len, 0, orders[i]);
+//            }
+//
+//            for(String key: map.keySet()) {
+//                if(map.get(key) == max && max > 1) {
+//                    pq.offer(key);
+//                }
+//            }
+//        }
+//
+//        int k = 0;
+//        String[] result = new String[pq.size()];
+//        while(!pq.isEmpty()) {
+//            result[k++] = pq.poll();
+//        }
+//
+//        return result;
+//    }
+//
+//    private void find(String curStr, int targetLen, int idx, String order) {
+//        if(curStr.length() == targetLen) {
+//            char[] alps = curStr.toCharArray();
+//            Arrays.sort(alps);
+//            String temp = "";
+//            for(int i = 0; i < alps.length; i++) temp += alps[i];
+//            map.put(temp, map.getOrDefault(temp, 0) + 1);
+//            max = Math.max(max, map.get(temp));
+//            return;
+//        }
+//
+//        for(int i = idx; i < order.length(); i++) {
+//            char now = order.charAt(i);
+//            find(curStr + now, targetLen, i + 1, order);
+//        }
+//    }
+    PriorityQueue<String> pq;
     int max;
+    Map<String, Integer> map;
 
     public String[] solution(String[] orders, int[] course) {
-        PriorityQueue<String> pq = new PriorityQueue<>();
+        pq = new PriorityQueue<>();
 
-        for(int len: course) {
-            map = new HashMap<>();
+        for (int courseSize : course) {
             max = 0;
+            map = new HashMap<>();
             for(int i = 0; i < orders.length; i++) {
-                find("", len, 0, orders[i]);
+                find("", 0, courseSize, orders[i]);
             }
 
             for(String key: map.keySet()) {
-                if(map.get(key) == max && max > 1) {
+                if(map.get(key) == max && map.get(key) > 1) {
                     pq.offer(key);
                 }
             }
         }
 
-        int k = 0;
         String[] result = new String[pq.size()];
+        int k = 0;
         while(!pq.isEmpty()) {
             result[k++] = pq.poll();
         }
@@ -83,20 +130,23 @@ public class MenuRenewal {
         return result;
     }
 
-    private void find(String curStr, int targetLen, int idx, String order) {
-        if(curStr.length() == targetLen) {
-            char[] alps = curStr.toCharArray();
-            Arrays.sort(alps);
+    private void find(String curStr, int searchIdx, int courseSize, String order) {
+        if(curStr.length() == courseSize) {
+            char[] chars = curStr.toCharArray();
+            Arrays.sort(chars);
             String temp = "";
-            for(int i = 0; i < alps.length; i++) temp += alps[i];
+            for (char ch : chars) {
+                temp += ch;
+            }
+
             map.put(temp, map.getOrDefault(temp, 0) + 1);
             max = Math.max(max, map.get(temp));
             return;
         }
 
-        for(int i = idx; i < order.length(); i++) {
-            char now = order.charAt(i);
-            find(curStr + now, targetLen, i + 1, order);
+        for(int i = searchIdx; i < order.length(); i++) {
+            find(curStr + order.charAt(i), i + 1, courseSize, order);
         }
     }
+
 }
