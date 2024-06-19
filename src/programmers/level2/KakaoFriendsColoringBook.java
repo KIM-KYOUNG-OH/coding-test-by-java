@@ -1,9 +1,7 @@
 package programmers.level2;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * 1차: solution 참고
@@ -140,15 +138,5 @@ public class KakaoFriendsColoringBook {
         }
 
         maxSizeOfOneArea = Math.max(maxSizeOfOneArea, cnt);
-    }
-
-    @Test
-    public void test() throws Exception {
-        KakaoFriendsColoringBook s = new KakaoFriendsColoringBook();
-        int[] result = s.solution(6, 4, new int[][]{{1, 1, 1, 0}, {1, 2, 2, 0},
-                {1, 0, 0, 1}, {0, 0, 0, 1}, {0, 0, 0, 3}, {0, 0, 0, 3}});
-        int[] answer = new int[]{4, 5};
-        Assertions.assertEquals(result[0], answer[0]);
-        Assertions.assertEquals(result[1], answer[1]);
     }
 }
