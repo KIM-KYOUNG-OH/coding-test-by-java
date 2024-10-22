@@ -19,6 +19,13 @@ public class P2667 {
         n = Integer.parseInt(br.readLine());
         graph = new int[n][n];
         visit = new boolean[n][n];
+        for (int i = 0; i < n; i++) {
+            String s = br.readLine();
+            for (int j = 0; j < n; j++) {
+                graph[i][j] = Integer.parseInt(String.valueOf(s.charAt(j)));
+            }
+        }
+
         q = new LinkedList<>();
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
