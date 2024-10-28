@@ -3,7 +3,6 @@ package baekjoon_2024;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
 import java.util.Stack;
 
 public class P1874 {
@@ -23,45 +22,22 @@ public class P1874 {
             if (num <= targets[cursor]) {
                 stack.push(num);
                 answer.add("+");
+            }
+
+            while (!stack.isEmpty() && stack.peek() == targets[cursor]) {
+                stack.pop();
+                answer.add("-");
                 cursor++;
-            } else {
-                boolean isPossible = true;
-                while (true) {
-                    System.out.println("temp");
-                    if (!stack.isEmpty() && cursor >= n) {
-                        break;
-                    }
-
-                    if (stack.isEmpty() && cursor < n) {
-                        isPossible = false;
-                        break;
-                    }
-
-                    if (stack.peek() != targets[cursor]) {
-                        isPossible = false;
-                        break;
-                    }
-
-                    stack.pop();
-                    answer.add("-");
-                    cursor++;
-                }
-
-                if (!isPossible) {
-                    bw.write("NO");
-                    return;
-                }
             }
         }
 
-        System.out.println("answer.size() = " + answer.size());
-        answer.stream().forEach(num -> {
-            try {
-                bw.write(String.valueOf(num));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+        if (!stack.isEmpty() || cursor < n) {
+            bw.write("NO");
+        } else {
+            for (String s : answer) {
+                bw.write(s + "\n");
             }
-        });
+        }
 
         bw.close();
         br.close();
