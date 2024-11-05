@@ -8,11 +8,15 @@
 - 해시
 - 정렬
 - 이진 탐색
+- lower bound & upper bound
 - 하노이 문제
 - 에라토스테네스의 체
 - knapsack
   - Fraction Knapsack Problem
   - 0/1 Knapsack Problem
+
+# Tip
+- 데이터 범위를 보고 int, long 으로 선언할지 고민
 
 # 솔루션 보고 푼 문제
 - 백준
