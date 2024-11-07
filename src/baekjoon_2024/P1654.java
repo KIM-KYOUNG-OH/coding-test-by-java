@@ -8,9 +8,12 @@ public class P1654 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         long[] s = Arrays.stream(br.readLine().split(" ")).mapToLong(Long::parseLong).toArray();
-        long k = s[0];
+        int k = (int) s[0];
         long n = s[1];
-        long[] lines = Arrays.stream(br.readLine().split(" ")).mapToLong(Long::parseLong).toArray();
+        long[] lines = new long[k];
+        for (int i = 0; i < k; i++) {
+            lines[i] = Long.parseLong(br.readLine());
+        }
 
         long min = 0;
         long max = Arrays.stream(lines).max().getAsLong();
@@ -18,16 +21,9 @@ public class P1654 {
             long mid = (min + max) / 2;
             long cnt = 0;
 
-            System.out.println("min = " + min);
-            System.out.println("max = " + max);
-            System.out.println("mid = " + mid);
-
             for (long line : lines) {
                 cnt += line / mid;
             }
-
-            System.out.println("cnt = " + cnt);
-            System.out.println();
 
             if (cnt > n) {
                 min = mid + 1;
