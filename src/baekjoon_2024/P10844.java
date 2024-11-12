@@ -5,10 +5,10 @@ import java.util.Deque;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class P10844 {
     private static Set<String> set = new HashSet<>();
+    private static long answer;
     private static int n;
     private static Deque<Integer> deque;
 
@@ -17,10 +17,11 @@ public class P10844 {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         n = Integer.parseInt(br.readLine());
         deque = new LinkedList<>();
+        answer = 0;
 
         recursive(0);
 
-        bw.write(String.valueOf(set.size()));
+        bw.write(String.valueOf(answer % 1000000000));
 
         bw.close();
         br.close();
@@ -28,7 +29,7 @@ public class P10844 {
 
     private static void recursive(int depth) {
         if (depth == n) {
-            set.add(deque.stream().map(String::valueOf).collect(Collectors.joining()));
+            answer++;
             return;
         }
 
