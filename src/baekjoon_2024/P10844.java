@@ -16,25 +16,4 @@ public class P10844 {
         bw.close();
         br.close();
     }
-
-    private static void recursive(int depth) {
-        if (depth == n) {
-            answer++;
-            return;
-        }
-
-        for (int i = 0; i <= 9; i++) {
-            if (depth == 0 && i == 0) continue;
-
-            if (!deque.isEmpty() && Math.abs(deque.getLast() - i) == 1) {
-                deque.addLast(i);
-                recursive(depth + 1);
-                deque.pollLast();
-            } else if (deque.isEmpty()) {
-                deque.addLast(i);
-                recursive(depth + 1);
-                deque.pollLast();
-            }
-        }
-    }
 }
