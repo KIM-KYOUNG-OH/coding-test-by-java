@@ -19,9 +19,16 @@
 # Tip
 - 데이터 범위를 보고 int, long 으로 선언할지 고민
 
-### 우선순위큐 내림차순 정렬
+### 우선순위큐 정렬
 ```
+//  내림차순 정렬
 PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+
+// Comparator를 이용한 객체 내부 성분 정렬
+PriorityQueue<Person> pq = new PriorityQueue<>(
+            Comparator.comparing(Person::getAge).reversed()
+                      .thenComparing(Person::getName)
+        );
 ```
 
 # 솔루션 보고 푼 문제
