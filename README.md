@@ -1,6 +1,19 @@
 # coding-test-by-java
 
 # 알고리즘 유형
+<details>
+<summary>Queue</summary>
+<div markdown="1">
+
+```java
+Queue<Task> q = new LinkedList<>();
+q.add(new Task());  // add queue
+Task task = q.poll();  // poll queue
+```
+
+</div>
+</details>  
+
 - 우선순위큐
 - brute force
 - greedy
