@@ -33,6 +33,8 @@ public class P1260 {
         }
 
         boolean[] visit = new boolean[n + 1];
+        visit[v] = true;
+        bw.write(v + " ");
         dfs(visit, v);
         bw.write("\n");
         bfs();
@@ -40,16 +42,15 @@ public class P1260 {
     }
 
     private static void dfs(boolean[] visit, int cur) throws IOException {
-        visit[cur] = true;
-        bw.write(cur + " ");
-
         if (depth == n) {
             return;
         }
-        depth++;
 
         for (int i = 1; i <= n; i++) {
             if (graph[cur][i] && !visit[i]) {
+                visit[i] = true;
+                bw.write(i + " ");
+                depth++;
                 dfs(visit, i);
             }
         }
