@@ -1,16 +1,15 @@
 package baekjoon_2025;
 
 import java.io.*;
-import java.util.*;
+import java.util.Arrays;
 
-public class P15649 {
-    private static BufferedReader br;
-    private static BufferedWriter bw;
+public class P15650 {
     private static int n;
     private static int m;
+    private static BufferedWriter bw;
 
     public static void main(String[] args) throws IOException {
-        br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         bw = new BufferedWriter(new OutputStreamWriter(System.out));
         int[] arr = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         n = arr[0];
@@ -23,6 +22,7 @@ public class P15649 {
     }
 
     private static void dfs(boolean[] visit, int[] container, int depth) throws IOException {
+
         if (depth == m) {
             for (int num : container) {
                 bw.write(num + " ");
@@ -32,6 +32,8 @@ public class P15649 {
         }
 
         for (int i = 0; i < n; i++) {
+            if (depth >= 1 && i + 1 <= container[depth - 1]) continue;
+
             if (!visit[i]) {
                 visit[i] = true;
                 container[depth] = i + 1;
@@ -40,5 +42,4 @@ public class P15649 {
             }
         }
     }
-
 }
