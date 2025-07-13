@@ -72,6 +72,17 @@ for (int i = 2; i <= Math.sqrt(n); i++) {
 </div>
 </details>
 
+<details>
+<summary> 백트래킹 </summary>
+<div markdown="1">
+
+노드를 탐색하는 방법 중, 어떤 노드의 '유망성'을 판단한 뒤 해당 노드가 유망하지 않다면 부모 노드로 돌아가 다른 자식 노드를 찾는 방법이다.  
+즉, 모든 경우의 수를 찾아보지만, 그 중에서도 가능성 있는 경우의 수만 찾아보는 방법이다.  
+DFS는 백트래킹의 방법중 하나이다.
+
+</div>
+</details>
+
 - 우선순위큐
 - brute force
 - greedy
