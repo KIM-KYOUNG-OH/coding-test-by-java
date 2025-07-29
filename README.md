@@ -89,7 +89,7 @@ DFS는 백트래킹의 방법중 하나이다.
 
 데이터가 이미 정렬되어 있는 상태에서 원하는 값을 찾아내는 알고리즘
 데이터 중앙값과 찾고자 하는 값을 비교해 데이터 크기를 절반씩 줄이면서 대상을 찾는 방식
-시간복잡도 O(logN)
+시간복잡도 : O(logN)
 
 ```java
 int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9};
@@ -105,7 +105,7 @@ while (left <= right) {
         answer = mid;
         break;
     } else if (target < arr[mid]) {
-        right = mid - 1;    
+        right = mid - 1;
     } else {
         left = mid + 1;    
     }
@@ -124,7 +124,7 @@ return answer;
 
 ```java
 public static int lowerBound(int target) {
-    int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int[] arr = {1, 2, 3, 3, 3, 3, 7, 8, 9};
     int left = 0;
     int right = arr.length - 1;
 
@@ -148,7 +148,7 @@ public static int lowerBound(int target) {
 <summary> Upper Bound </summary>
 <div markdown="1">
 
-배열 중복 허용될 때, 배열에서 x를 초과하는 값이 처음으로 나타나는 위치
+배열 중복 허용될 때, 배열에서 x 를 초과하는 값이 처음으로 나타나는 위치
 
 ```java
 public static int upperBound(int target) {
@@ -177,7 +177,7 @@ public static int upperBound(int target) {
 <summary> Upper Bound 변형 </summary>
 <div markdown="1">
 
-배열 중복 허용될 때, 배열에서 x이하를 만족하는 값들 중 가장 마지막 위치
+배열 중복 허용될 때, 배열에서 x 이하를 만족하는 값들 중 가장 마지막 위치
 
 ```java
 public static int upperBound2(int target) {
@@ -189,7 +189,7 @@ public static int upperBound2(int target) {
         int mid = (left+right) / 2;
         
         if(arr[mid] <= target){
-            left=mid + 1;
+            left = mid + 1;
         } else {
             right = mid - 1;
         }
